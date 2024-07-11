@@ -1,21 +1,40 @@
-
 let display = document.querySelector(".cal-display");
 
-document.querySelector(".first-set-btns").addEventListener("click", function() {
-  console.log("buton pressed 1")
-});
+function calButons(){
+   const numbers = [
+    {no: ".seven", value: '7'},
+    {no: ".eight", value: '8'},
+    {no: ".nine", value: '9'},
+    {no: ".four", value: '4'},
+    {no: ".five", value: '5'},
+    {no: ".six", value: '6'},
+    {no: ".one", value: '1'},
+    {no: ".two", value: '2'},
+    {no: ".three", value: '3'},
+    {no: ".zero", value: '0'},
+    {no: ".dot", value: '.'},
+    {no: ".plus", value: '+'},
+    {no: ".minus", value: '-'},
+    {no: ".multiply", value: '*'},
+    {no: ".divide", value: '/'},
+    {no: ".percent", value: '%'}
+   ];
 
-document.querySelector(".second-set-btns").addEventListener("click", function() {
-  console.log("buton pressed 2");
-  display.value = '7';
-});
+   numbers.forEach(number =>{
+    document.querySelector(number.no).addEventListener("click", function() {
+      display.value += number.value;
+      console.log(number.value);
+    });
+   });
 
-document.querySelector(".third-set-btns").addEventListener("click", function() {
-  console.log("buton pressed 3");
-  display.value = '4';
-});
+   document.querySelector(".equal-btn").addEventListener("click", function() {
+     try{
+      display.value = eval(display.value)
+     }catch(e) {
+      display.value = 'error';
+      console.error('invalid expression');
+     }
+   });
+}
 
-document.querySelector(".fourth-set-btns").addEventListener("click", function() {
-  console.log("buton pressed 4");
-  display.value = '1';
-});
+calButons();
